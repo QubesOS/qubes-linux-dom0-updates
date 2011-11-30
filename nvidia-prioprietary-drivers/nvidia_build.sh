@@ -18,8 +18,7 @@ if ! rpm -q kernel-devel-$KERNEL_VER; then
 	exit 1
 fi
 
-rpmbuild -D "kernels $KERNEL_VER" --rebuild nvidia-kmod-*.src.rpm  || exit 1
-# Unfortunately --define _rpmdir doesn't work with --rebuild
-RPMDIR=`rpm -E '%_rpmdir'`
-mv $RPMDIR/$basearch/kmod-nvidia-$KERNEL_VER*rpm rpm/$basearch/ || exit 1
+rpmbuild --rebuild --define "_rpmdir rpm/" livna-config-display-*.src.rpm || exit 1
+rpmbuild --rebuild --define "_rpmdir rpm/" xorg-x11-drv-nvidia-*.src.rpm || exit 1
+rpmbuild --rebuild --define "_rpmdir rpm/" -D "kernels $KERNEL_VER" nvidia-kmod-*.src.rpm || exit 1
 echo Done.
