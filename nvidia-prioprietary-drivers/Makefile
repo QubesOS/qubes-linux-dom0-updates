@@ -1,5 +1,5 @@
 rpms:
-	./nvidia_build.sh
+	./nvidia_build.sh $(KERNEL_VER)
 	# Sign all rpms - also this just downloaded
 	# (dom0 has no keys to verify original signature)
 	# rpm pass additional argument directly as argv, so we must repeat
