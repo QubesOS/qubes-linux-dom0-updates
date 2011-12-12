@@ -6,6 +6,7 @@ stage1:
 
 stage2:
 	rpmbuild --rebuild --define "_rpmdir rpm/" xorg-x11-drv-intel-*.src.rpm 
+	rpmbuild --rebuild --define "_rpmdir rpm/" xorg-x11-drv-nouveau-*.src.rpm 
 	rpmbuild --rebuild --define "_rpmdir rpm/" mesa-*.src.rpm 
 
 nvidia:
