@@ -11,6 +11,8 @@ stage1:
 	rpmbuild --rebuild --define "_rpmdir rpm/" llvm-*.src.rpm
 	rpmbuild --rebuild --define "_rpmdir rpm/" kmodtool-*.src.rpm
 	rpmbuild --rebuild --define "_rpmdir rpm/" pmount-*.src.rpm
+	rpmbuild --rebuild --define "_rpmdir rpm/" linux-firmware-*.src.rpm
+	rpmbuild --rebuild --define "_rpmdir rpm/" netxen-firmware-*.src.rpm
 
 stage2:
 	rpmbuild --rebuild --define "_rpmdir rpm/" mesa-*.src.rpm 
