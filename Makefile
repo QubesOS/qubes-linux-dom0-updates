@@ -1,13 +1,26 @@
-stage1:
-	rpmbuild --rebuild --define "_rpmdir rpm/" libdrm-*.src.rpm 
+stage0:
 	rpmbuild --rebuild --define "_rpmdir rpm/" xorg-x11-util-macros-*.src.rpm
+
+stage1:
+	rpmbuild --rebuild --define "_rpmdir rpm/" libpciaccess-*.src.rpm
+	MAKELEVEL= rpmbuild --rebuild --define "_rpmdir rpm/" libdrm-*.src.rpm 
+	rpmbuild --rebuild --define "_rpmdir rpm/" libXfont-*.src.rpm
+	rpmbuild --rebuild --define "_rpmdir rpm/" xorg-x11-proto-devel-*.src.rpm
+	rpmbuild --rebuild --define "_rpmdir rpm/" pixman-*.src.rpm
 	rpmbuild --rebuild --define "_rpmdir rpm/" llvm-*.src.rpm
 	rpmbuild --rebuild --define "_rpmdir rpm/" kmodtool-*.src.rpm
 	rpmbuild --rebuild --define "_rpmdir rpm/" pmount-*.src.rpm
 
 stage2:
+	rpmbuild --rebuild --define "_rpmdir rpm/" mesa-*.src.rpm 
+
+stage3:
+	rpmbuild --rebuild --define "_rpmdir rpm/" xorg-x11-server-*.src.rpm
+
+stage4:
 	rpmbuild --rebuild --define "_rpmdir rpm/" xorg-x11-drv-intel-*.src.rpm 
 	rpmbuild --rebuild --define "_rpmdir rpm/" xorg-x11-drv-nouveau-*.src.rpm 
+	# rebuild with newer xorg-x11-server-devel
 	rpmbuild --rebuild --define "_rpmdir rpm/" mesa-*.src.rpm 
 
 nvidia:
