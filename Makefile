@@ -20,6 +20,8 @@ stage3:
 stage4:
 	rpmbuild --rebuild --define "_rpmdir rpm/" xorg-x11-drv-intel-*.src.rpm 
 	rpmbuild --rebuild --define "_rpmdir rpm/" xorg-x11-drv-nouveau-*.src.rpm 
+	rpmbuild --rebuild --define "_rpmdir rpm/" xorg-x11-drv-modesetting-*.src.rpm
+	rpmbuild --rebuild --define "_rpmdir rpm/" xorg-x11-drivers-*.src.rpm
 	# rebuild with newer xorg-x11-server-devel
 	rpmbuild --rebuild --define "_rpmdir rpm/" mesa-*.src.rpm 
 
