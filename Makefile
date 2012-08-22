@@ -2,6 +2,7 @@ stage0:
 	rpmbuild --rebuild --define "_rpmdir rpm/" xorg-x11-util-macros-*.src.rpm
 
 stage1:
+	rpmbuild --rebuild --define "_rpmdir rpm/" mtdev-*.src.rpm
 	rpmbuild --rebuild --define "_rpmdir rpm/" libpciaccess-*.src.rpm
 	MAKELEVEL= rpmbuild --rebuild --define "_rpmdir rpm/" libdrm-*.src.rpm 
 	rpmbuild --rebuild --define "_rpmdir rpm/" libXfont-*.src.rpm
@@ -18,9 +19,9 @@ stage3:
 	rpmbuild --rebuild --define "_rpmdir rpm/" xorg-x11-server-*.src.rpm
 
 stage4:
-	rpmbuild --rebuild --define "_rpmdir rpm/" xorg-x11-drv-intel-*.src.rpm 
-	rpmbuild --rebuild --define "_rpmdir rpm/" xorg-x11-drv-nouveau-*.src.rpm 
-	rpmbuild --rebuild --define "_rpmdir rpm/" xorg-x11-drv-modesetting-*.src.rpm
+	for drv in xorg-x11-drv-*.src.rpm; do \
+	    rpmbuild --rebuild --define "_rpmdir rpm/" $$drv || exit 1; \
+	done
 	rpmbuild --rebuild --define "_rpmdir rpm/" xorg-x11-drivers-*.src.rpm
 	# rebuild with newer xorg-x11-server-devel
 	rpmbuild --rebuild --define "_rpmdir rpm/" mesa-*.src.rpm 
