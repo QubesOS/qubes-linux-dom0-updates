@@ -22,7 +22,7 @@ stage3:
 
 stage4:
 	for drv in xorg-x11-drv-*.src.rpm; do \
-	    rpmbuild --rebuild --define "_rpmdir rpm/" $$drv || exit 1; \
+	    ./fix-and-build-driver.sh $$drv || exit 1; \
 	done
 	rpmbuild --rebuild --define "_rpmdir rpm/" xorg-x11-drivers-*.src.rpm
 	# rebuild with newer xorg-x11-server-devel
