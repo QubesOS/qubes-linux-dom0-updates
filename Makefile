@@ -1,9 +1,9 @@
 stage0:
 	rpmbuild --rebuild --define "_rpmdir rpm/" xorg-x11-util-macros-*.src.rpm
+	rpmbuild --rebuild --define "_rpmdir rpm/" libpciaccess-*.src.rpm
 
 stage1:
 	rpmbuild --rebuild --define "_rpmdir rpm/" mtdev-*.src.rpm
-	rpmbuild --rebuild --define "_rpmdir rpm/" libpciaccess-*.src.rpm
 	MAKELEVEL= rpmbuild --rebuild --define "_rpmdir rpm/" libdrm-*.src.rpm 
 	rpmbuild --rebuild --define "_rpmdir rpm/" libXfont-*.src.rpm
 	rpmbuild --rebuild --define "_rpmdir rpm/" xorg-x11-proto-devel-*.src.rpm
