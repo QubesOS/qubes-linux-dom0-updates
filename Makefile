@@ -24,7 +24,7 @@ stage4:
 	for drv in xorg-x11-drv-*.src.rpm; do \
 	    ./fix-and-build-driver.sh $$drv || exit 1; \
 	done
-	rpmbuild --rebuild --define "_rpmdir rpm/" xorg-x11-drivers-*.src.rpm
+	rpmbuild -bb --define "_rpmdir rpm/" xorg-x11-drivers.spec
 	# rebuild with newer xorg-x11-server-devel
 	rpmbuild --rebuild --define "_rpmdir rpm/" mesa-*.src.rpm 
 
