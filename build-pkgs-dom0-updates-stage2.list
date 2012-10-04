@@ -17,3 +17,4 @@ libXrender-devel
 openssl-devel
 libselinux-devel
 libXfont-devel
+xorg-x11-server-devel
