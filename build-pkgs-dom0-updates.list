@@ -31,3 +31,4 @@ libxml2-python
 systemtap-sdt-devel
 audit-libs-devel
 tar
+xorg-x11-util-macros

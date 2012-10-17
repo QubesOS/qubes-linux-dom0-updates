@@ -1,6 +1,5 @@
 libdrm-devel
 llvm*
-kmodtool
 prelink
 mesa-libGL-devel
 xorg-x11-proto-devel

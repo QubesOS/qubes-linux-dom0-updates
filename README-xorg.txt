@@ -24,18 +24,3 @@ reference and for future updates.
   Above command will list INVALID packages. If any is listed, stop here and
   investigate why, perhaps redownload it.
   You should have Fedora-17 gpg key imported (rpm --import <path-to-key>).
-
-5. Fix some packages:
- (replace "file" with package name)
- rpm -i file*.src.rpm
- edit ~/rpmbuild/SPECS/file.spec
-  add "--force" option to "autoreconf" command in %build section
- rebuild source rpm:
- rpmbuild -bs ~/rpmbuild/SPECS/file.spec
- replace original file*src.rpm with one from ~/rpmbuild/SRPMS
-
- Repeat above procedure for:
- xorg-x11-drv-evdev-*.src.rpm
- xorg-x11-drv-mouse-*.src.rpm
- xorg-x11-drv-keyboard-*.src.rpm
- xorg-x11-drv-void-*.src.rpm

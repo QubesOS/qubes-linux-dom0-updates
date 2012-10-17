@@ -9,7 +9,6 @@ stage1:
 	rpmbuild --rebuild --define "_rpmdir rpm/" xorg-x11-proto-devel-*.src.rpm
 	rpmbuild --rebuild --define "_rpmdir rpm/" pixman-*.src.rpm
 	rpmbuild --rebuild --define "_rpmdir rpm/" llvm-*.src.rpm
-	rpmbuild --rebuild --define "_rpmdir rpm/" kmodtool-*.src.rpm
 	rpmbuild --rebuild --define "_rpmdir rpm/" pmount-*.src.rpm
 	rpmbuild --rebuild --define "_rpmdir rpm/" linux-firmware-*.src.rpm
 	rpmbuild --rebuild --define "_rpmdir rpm/" netxen-firmware-*.src.rpm
@@ -27,9 +26,6 @@ stage4:
 	rpmbuild -bb --define "_rpmdir rpm/" xorg-x11-drivers.spec
 	# rebuild with newer xorg-x11-server-devel
 	rpmbuild --rebuild --define "_rpmdir rpm/" mesa-*.src.rpm 
-
-nvidia:
-	$(MAKE) -C nvidia-prioprietary-drivers rpms
 
 update-repo-installer:
 	ln -f rpm/noarch/*.rpm ../installer/yum/dom0-updates/rpm/
