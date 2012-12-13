@@ -34,20 +34,14 @@ update-repo-installer:
 update-repo-current:
 	ln -f rpm/noarch/*.rpm ../yum/current-release/current/dom0/rpm/
 	ln -f rpm/x86_64/*.rpm ../yum/current-release/current/dom0/rpm/
-	ln -f nvidia-prioprietary-drivers/rpm/noarch/*.rpm ../yum/current-release/current/dom0/rpm/
-	ln -f nvidia-prioprietary-drivers/rpm/x86_64/*.rpm ../yum/current-release/current/dom0/rpm/
 
 update-repo-current-testing:
 	ln -f rpm/noarch/*.rpm ../yum/current-release/current-testing/dom0/rpm/
 	ln -f rpm/x86_64/*.rpm ../yum/current-release/current-testing/dom0/rpm/
-	ln -f nvidia-prioprietary-drivers/rpm/noarch/*.rpm ../yum/current-release/current-testing/dom0/rpm/
-	ln -f nvidia-prioprietary-drivers/rpm/x86_64/*.rpm ../yum/current-release/current-testing/dom0/rpm/
 
 update-repo-unstable:
 	ln -f rpm/noarch/*.rpm ../yum/current-release/unstable/dom0/rpm/
 	ln -f rpm/x86_64/*.rpm ../yum/current-release/unstable/dom0/rpm/
-	ln -f nvidia-prioprietary-drivers/rpm/noarch/*.rpm ../yum/current-release/unstable/dom0/rpm/
-	ln -f nvidia-prioprietary-drivers/rpm/x86_64/*.rpm ../yum/current-release/unstable/dom0/rpm/
 
 clean:
 
