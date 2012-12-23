@@ -7,6 +7,7 @@ stage1:
 	MAKELEVEL= rpmbuild --rebuild --define "_rpmdir rpm/" libdrm-*.src.rpm 
 	rpmbuild --rebuild --define "_rpmdir rpm/" libXfont-*.src.rpm
 	rpmbuild --rebuild --define "_rpmdir rpm/" xorg-x11-proto-devel-*.src.rpm
+	./fix-and-build-driver.sh libXi-*.src.rpm
 	rpmbuild --rebuild --define "_rpmdir rpm/" pixman-*.src.rpm
 	rpmbuild --rebuild --define "_rpmdir rpm/" llvm-*.src.rpm
 	rpmbuild --rebuild --define "_rpmdir rpm/" pmount-*.src.rpm
