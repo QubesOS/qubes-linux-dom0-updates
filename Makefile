@@ -1,32 +1,17 @@
 stage0:
-	rpmbuild --rebuild --define "_rpmdir rpm/" xorg-x11-util-macros-*.src.rpm
-	rpmbuild --rebuild --define "_rpmdir rpm/" libpciaccess-*.src.rpm
+	true
 
 stage1:
-	rpmbuild --rebuild --define "_rpmdir rpm/" mtdev-*.src.rpm
-	MAKELEVEL= rpmbuild --rebuild --define "_rpmdir rpm/" libdrm-*.src.rpm 
-	rpmbuild --rebuild --define "_rpmdir rpm/" libXfont-*.src.rpm
-	rpmbuild --rebuild --define "_rpmdir rpm/" xorg-x11-proto-devel-*.src.rpm
-	./fix-and-build-driver.sh libXi-*.src.rpm
-	rpmbuild --rebuild --define "_rpmdir rpm/" pixman-*.src.rpm
-	rpmbuild --rebuild --define "_rpmdir rpm/" llvm-*.src.rpm
-	rpmbuild --rebuild --define "_rpmdir rpm/" pmount-*.src.rpm
-	rpmbuild --rebuild --define "_rpmdir rpm/" linux-firmware-*.src.rpm
-	rpmbuild --rebuild --define "_rpmdir rpm/" netxen-firmware-*.src.rpm
+	true
 
 stage2:
-	rpmbuild --rebuild --define "_rpmdir rpm/" mesa-*.src.rpm 
+	true
 
 stage3:
-	rpmbuild --rebuild --define "_rpmdir rpm/" xorg-x11-server-*.src.rpm
+	true
 
 stage4:
-	for drv in xorg-x11-drv-*.src.rpm; do \
-	    ./fix-and-build-driver.sh $$drv || exit 1; \
-	done
-	rpmbuild -bb --define "_rpmdir rpm/" xorg-x11-drivers.spec
-	# rebuild with newer xorg-x11-server-devel
-	rpmbuild --rebuild --define "_rpmdir rpm/" mesa-*.src.rpm 
+	true
 
 update-repo-installer:
 	ln -f rpm/noarch/*.rpm ../installer/yum/dom0-updates/rpm/
