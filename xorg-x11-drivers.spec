@@ -75,6 +75,23 @@ Requires: xorg-x11-drv-geode
 Requires: xorg-x11-drv-openchrome
 %endif
 
+# Ease upgrade path by removing unsupported drivers:
+Obsoletes: xorg-x11-drv-tdfx
+Obsoletes: xorg-x11-drv-i740
+Obsoletes: xorg-x11-drv-rendition
+Obsoletes: xorg-x11-drv-mga
+Obsoletes: xorg-x11-drv-trident
+Obsoletes: xorg-x11-drv-sis
+Obsoletes: xorg-x11-drv-apm
+Obsoletes: xorg-x11-drv-i128
+Obsoletes: xorg-x11-drv-savage
+Obsoletes: xorg-x11-drv-siliconmotion
+Obsoletes: xorg-x11-drv-r128
+Obsoletes: xorg-x11-drv-mach64
+Obsoletes: xorg-x11-drv-glint
+Obsoletes: xorg-x11-drv-cirrus
+Obsoletes: xorg-x11-drv-s3virge
+
 %endif
 
 %description
