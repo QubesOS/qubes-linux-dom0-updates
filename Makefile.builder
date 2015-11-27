@@ -12,6 +12,7 @@ ifeq ($(PACKAGE_SET),dom0)
     					xorg-x11-drv-modesetting-0.9.0-2.fc21.src.rpm \
     					xorg-x11-drv-nouveau-1.0.11-1.fc21.src.rpm \
     					xorg-x11-drv-openchrome-0.3.3-12.fc21.src.rpm \
+    					xorg-x11-drv-qxl-0.1.2-1.fc21.src.rpm \
     					xorg-x11-drv-sisusb-0.9.6-18.fc21.src.rpm \
     					xorg-x11-drv-synaptics-1.8.1-6.fc21.src.rpm \
     					xorg-x11-drv-v4l-0.2.0-41.fc21.src.rpm \
@@ -22,7 +23,7 @@ ifeq ($(PACKAGE_SET),dom0)
     					xorg-x11-drv-voodoo-1.2.5-18.fc21.src.rpm \
     					xorg-x11-drv-wacom-0.25.0-2.fc21.src.rpm
 
-    RPM_SPEC_FILES := xorg-x11-drivers.spec
+    RPM_SPEC_FILES := xorg-x11-drivers.spec build-deps-qxl.spec
 endif
 
 # vim: ft=make
