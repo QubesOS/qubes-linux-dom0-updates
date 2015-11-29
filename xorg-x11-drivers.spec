@@ -1,7 +1,7 @@
 Summary: X.Org X11 driver installation package
 Name: xorg-x11-drivers
 Version: 7.7
-Release: 12%{?dist}
+Release: 13%{?dist}
 License: MIT
 Group: User Interface/X Hardware Support
 
