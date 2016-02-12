@@ -3,6 +3,10 @@
 
 %global _firmwarepath	/usr/lib/firmware
 
+%if 0%{?qubes_builder}
+%define _sourcedir %(pwd)
+%endif
+
 Name:		linux-firmware
 Version:	20160204
 Release:	%{firmware_release}.git%{checkout}%{?dist}
