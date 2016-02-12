@@ -1,5 +1,5 @@
 %global checkout 91d5dd13
-%global firmware_release 61
+%global firmware_release 62
 
 %global _firmwarepath	/usr/lib/firmware
 
