@@ -26,6 +26,7 @@ Obsoletes:	ql2500-firmware < 5.08.00-2
 Obsoletes:	rt61pci-firmware < 1.2-11
 Obsoletes:	rt73usb-firmware < 1.8-11
 Obsoletes:	cx18-firmware < 20080628-10
+Obsoletes:	ivtv-firmware
 Conflicts:	microcode_ctl < 2.1-0
 
 BuildRequires: git
