@@ -21,7 +21,8 @@ ifeq ($(PACKAGE_SET),dom0)
     					xorg-x11-drv-vmware-13.0.2-8.20150211git8f0cf7c.fc21.src.rpm \
     					xorg-x11-drv-void-1.4.0-27.fc21.src.rpm \
     					xorg-x11-drv-voodoo-1.2.5-18.fc21.src.rpm \
-    					xorg-x11-drv-wacom-0.25.0-2.fc21.src.rpm
+    					xorg-x11-drv-wacom-0.25.0-2.fc21.src.rpm \
+    					linux-firmware-20160204-61.git91d5dd13.fc23.src.rpm
 
     RPM_SPEC_FILES := xorg-x11-drivers.spec build-deps-qxl.spec
 endif
