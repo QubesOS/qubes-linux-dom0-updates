@@ -14,7 +14,6 @@ reference and for future updates.
     rm -f xorg-x11-drv-omap-*src.rpm
     rm -f xorg-x11-drv-opentegra-*src.rpm
     # not used in Qubes
-    rm -f xorg-x11-drv-libinput-*.src.rpm
     rm -f xorg-x11-drv-qxl-*src.rpm
 4. Verify downloaded packages
    rpm -K *.src.rpm | grep -v 'pgp md5 OK$'
