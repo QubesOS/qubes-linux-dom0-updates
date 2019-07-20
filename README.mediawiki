@@ -1,0 +1,31 @@
+<!--
+## Copyright (C) 2013 - 2018 Qubes Contributors
+## See the file COPYING for copying conditions.
+-->
+<!--
+EDITORS NOTE:
+Please do not use relative links here, because this file is mirrored on github  https://github.com/QubesOS/qubes-linux-dom0-updates/blob/master/README.mediawiki and relative links won't work there.
+-->
+__TOC__
+
+= About qubes-linux-dom0-updates =
+
+qubes-linux-dom0-updates is a dom0 updater, after running the updates posting the
+status on ''qubes/update-status''. The items are below
+
+* Clone/Copy qubes-builder
+
+* Assign the ''DIST_DOM0'' with the Qubes Repository Version.
+
+* Attempt update
+
+* Post update-status
+
+= Build Status =
+<!--
+EDITORS NOTE:
+Please do not fix the picture links with html tags.
+-->
+
+* Status: <img src=https://travis-ci.com/QubesOS/qubes-linux-dom0-updates.svg?branch=master alt="dom0-updates"> | (qubes-linux0-updates repository)
+
