@@ -1,4 +1,4 @@
-FEDORA_MIRROR ?= https://download.fedoraproject.org/pub/fedora/linux
+FEDORA_MIRROR ?= https://archives.fedoraproject.org/pub/archive/fedora/linux
 FC28_BASEURL = $(FEDORA_MIRROR)/releases/28/Everything/source/tree/Packages
 KEYS = keys/RPM-GPG-KEY-fedora-28-primary
 
