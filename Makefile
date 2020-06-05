@@ -1,14 +1,17 @@
 FEDORA_MIRROR ?= http://archives.fedoraproject.org/pub/archive/fedora/linux
-FC28_BASEURL = $(FEDORA_MIRROR)/updates/28/Everything/SRPMS/Packages
+FC28_BASEURL = $(FEDORA_MIRROR)/releases/28/Everything/source/tree/Packages
+FC28_UPDATES_BASEURL = $(FEDORA_MIRROR)/updates/28/Everything/SRPMS/Packages
 FC25_BASEURL = $(FEDORA_MIRROR)/releases/25/Everything/source/tree/Packages
 FC25_UPDATES_BASEURL = $(FEDORA_MIRROR)/updates/25/SRPMS/Packages
 KEYS = keys/RPM-GPG-KEY-fedora-28-primary keys/RPM-GPG-KEY-fedora-25-primary
 
 include Makefile.builder
 
-ALL_URLS := $(foreach pkg,$(PACKAGES_FROM_FC28), \
-				$(FC28_BASEURL)/$(shell echo $(pkg)|head -c 1|tr A-Z a-z)/$(pkg)) \
-            $(foreach pkg,$(PACKAGES_FROM_FC25), \
+ALL_URLS := \
+           $(foreach pkg,$(PACKAGES_FROM_FC28), \
+					$(if $(findstring $(pkg), $(PACKAGES_FROM_FC28_UPDATES)), \
+						$(FC28_UPDATES_BASEURL), $(FC28_BASEURL))/$(shell echo $(pkg)|head -c 1|tr A-Z a-z)/$(pkg)) \
+           $(foreach pkg,$(PACKAGES_FROM_FC25), \
 					$(if $(findstring $(pkg), $(PACKAGES_FROM_FC25_UPDATES)), \
 						$(FC25_UPDATES_BASEURL), $(FC25_BASEURL))/$(shell echo $(pkg)|head -c 1|tr A-Z a-z)/$(pkg))
 
