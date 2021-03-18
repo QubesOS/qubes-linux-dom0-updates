@@ -12,14 +12,16 @@ PACKAGES_FROM_FC25 := \
   hawkey-0.6.4-3.fc25.src.rpm \
   satyr-0.21-2.fc25.src.rpm \
   PackageKit-1.1.5-1.fc25.src.rpm \
-  grub2-2.02-0.38.fc25.src.rpm
+  grub2-2.02-0.38.fc25.src.rpm \
+  systemtap-3.2-2.fc25.src.rpm
 
 # used by Makefile, not relevant for RPM_SRC_PACKAGES
 PACKAGES_FROM_FC25_UPDATES := \
   libsolv-0.6.29-2.fc25.src.rpm \
   hawkey-0.6.4-3.fc25.src.rpm \
   PackageKit-1.1.5-1.fc25.src.rpm \
-  grub2-2.02-0.38.fc25.src.rpm
+  grub2-2.02-0.38.fc25.src.rpm \
+  systemtap-3.2-2.fc25.src.rpm
 
 ifeq ($(DIST), fc25)
     RPM_SRC_PACKAGES.dom0 := $(PACKAGES_FROM_FC28:%.fc28.src.rpm=%.$(DIST).src.rpm) \
