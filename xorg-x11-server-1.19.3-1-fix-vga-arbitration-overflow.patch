@@ -1,0 +1,67 @@
+Binary files xorg-x11-server-1.19.3-1.need-patch.fc25.src.rpm/.swp and xorg-x11-server-1.19.3-1.need-patch.fc25.src.rpm.new/.swp differ
+diff -uprN xorg-x11-server-1.19.3-1.need-patch.fc25.src.rpm/fix-vga-arbitration.patch xorg-x11-server-1.19.3-1.need-patch.fc25.src.rpm.new/fix-vga-arbitration.patch
+--- xorg-x11-server-1.19.3-1.need-patch.fc25.src.rpm/fix-vga-arbitration.patch	1970-01-01 00:00:00.000000000 +0000
++++ xorg-x11-server-1.19.3-1.need-patch.fc25.src.rpm.new/fix-vga-arbitration.patch	2021-12-11 16:34:58.169000000 +0000
+@@ -0,0 +1,50 @@
++From cf7517675d988c2d1ff967d6d162a17acbdad466 Mon Sep 17 00:00:00 2001
++From: Keith Packard <keithp@keithp.com>
++Date: Wed, 2 Aug 2017 21:34:52 -0700
++Subject: [PATCH] xfree86: Hold input_lock across SPRITE functions in VGA
++ arbiter
++
++Avoid scrambling the sprite functions wrapper.
++
++Bugzilla: https://bugs.freedesktop.org/show_bug.cgi?id=101995
++Signed-off-by: Keith Packard <keithp@keithp.com>
++Reviewed-by: Adam Jackson <ajax@redhat.com>
++---
++ hw/xfree86/common/xf86VGAarbiterPriv.h | 20 +++++++++++++-------
++ 1 file changed, 13 insertions(+), 7 deletions(-)
++
++diff --git a/hw/xfree86/common/xf86VGAarbiterPriv.h b/hw/xfree86/common/xf86VGAarbiterPriv.h
++index 09be10aa3..03db55700 100644
++--- a/hw/xfree86/common/xf86VGAarbiterPriv.h
+++++ b/hw/xfree86/common/xf86VGAarbiterPriv.h
++@@ -73,14 +73,20 @@
++ 
++ #define UNWRAP_SCREEN_INFO(x) pScrn->x = pScreenPriv->x
++ 
++-#define SPRITE_PROLOG miPointerScreenPtr PointPriv = \
++-    (miPointerScreenPtr)dixLookupPrivate(&pScreen->devPrivates, \
++-    miPointerScreenKey); VGAarbiterScreenPtr pScreenPriv = \
++-    ((VGAarbiterScreenPtr)dixLookupPrivate(&(pScreen)->devPrivates, \
++-    VGAarbiterScreenKey)); PointPriv->spriteFuncs = pScreenPriv->miSprite;
+++#define SPRITE_PROLOG                                           \
+++    miPointerScreenPtr PointPriv;                               \
+++    VGAarbiterScreenPtr pScreenPriv;                            \
+++    input_lock();                                               \
+++    PointPriv = dixLookupPrivate(&pScreen->devPrivates,         \
+++                                 miPointerScreenKey);           \
+++    pScreenPriv = dixLookupPrivate(&(pScreen)->devPrivates,     \
+++                                   VGAarbiterScreenKey);        \
+++    PointPriv->spriteFuncs = pScreenPriv->miSprite;             \
++ 
++-#define SPRITE_EPILOG pScreenPriv->miSprite = PointPriv->spriteFuncs;\
++-    PointPriv->spriteFuncs  = &VGAarbiterSpriteFuncs;
+++#define SPRITE_EPILOG                                   \
+++    pScreenPriv->miSprite = PointPriv->spriteFuncs;     \
+++    PointPriv->spriteFuncs  = &VGAarbiterSpriteFuncs;   \
+++    input_unlock();
++ 
++ #define WRAP_SPRITE do { pScreenPriv->miSprite = PointPriv->spriteFuncs;\
++     	PointPriv->spriteFuncs  = &VGAarbiterSpriteFuncs; 		\
++-- 
++GitLab
++
+diff -uprN xorg-x11-server-1.19.3-1.need-patch.fc25.src.rpm/xorg-x11-server.spec xorg-x11-server-1.19.3-1.need-patch.fc25.src.rpm.new/xorg-x11-server.spec
+--- xorg-x11-server-1.19.3-1.need-patch.fc25.src.rpm/xorg-x11-server.spec	2021-12-11 16:29:25.200000000 +0000
++++ xorg-x11-server-1.19.3-1.need-patch.fc25.src.rpm.new/xorg-x11-server.spec	2021-12-11 16:34:37.467000000 +0000
+@@ -105,6 +105,8 @@ Patch7027: xserver-autobind-hotplug.patc
+ # because the display-managers are not ready yet, do not upstream
+ Patch10000: 0001-Fedora-hack-Make-the-suid-root-wrapper-always-start-.patch
+ 
++Patch20000: fix-vga-arbitration.patch
++
+ %global moduledir	%{_libdir}/xorg/modules
+ %global drimoduledir	%{_libdir}/dri
+ %global sdkdir		%{_includedir}/xorg
