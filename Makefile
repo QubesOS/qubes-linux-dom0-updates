@@ -12,10 +12,14 @@ ALL_URLS := $(foreach pkg,$(PACKAGES_FROM_FC28), \
 					$(FC28_UPDATES_BASEURL), $(FC28_BASEURL))/$(shell echo $(pkg)|head -c 1|tr A-Z a-z)/$(pkg)) \
             $(foreach pkg,$(PACKAGES_FROM_FC25), \
 				$(if $(findstring $(pkg), $(PACKAGES_FROM_FC25_UPDATES)), \
+					$(FC25_UPDATES_BASEURL), $(FC25_BASEURL))/$(shell echo $(pkg)|head -c 1|tr A-Z a-z)/$(pkg)) \
+            $(foreach pkg,$(PACKAGES_FROM_FC25_NEED_PATCH), \
+				$(if $(findstring $(pkg), $(PACKAGES_FROM_FC25_UPDATES)), \
 					$(FC25_UPDATES_BASEURL), $(FC25_BASEURL))/$(shell echo $(pkg)|head -c 1|tr A-Z a-z)/$(pkg))
 
 ALL_ORIG_FILES := $(notdir $(ALL_URLS))
-ALL_FILES := $(ALL_ORIG_FILES:%.fc28.src.rpm=%.fc25.src.rpm)
+ALL_FILES := $(ALL_ORIG_FILES:%.fc28.src.rpm=%.fc25.src.rpm) \
+	     $(PACKAGES_FROM_FC25_NEED_PATCH:%.fc25.src.rpm=%.need-patch.fc25.src.rpm)
 
 ifneq ($(DISTFILES_MIRROR),)
 ALL_URLS := $(addprefix $(DISTFILES_MIRROR),$(ALL_FILES))
